@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "234247742694",
+    "firebase_url": "https://fir-iot-fb81e-default-rtdb.firebaseio.com",
+    "project_id": "fir-iot-fb81e",
+    "storage_bucket": "fir-iot-fb81e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:234247742694:android:d38745e05854d984758727",
+        "android_client_info": {
+          "package_name": "com.example.myapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "234247742694-ikemdrnnd31to815t1n55trd8dnnvhpa.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.myapp",
+            "certificate_hash": "073167fe47babb246a7d8181e940e09f50c79374"
+          }
+        },
+        {
+          "client_id": "234247742694-f78vt9mtvs5h0vu3i33bqmv84b1as5v0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC5tLTjtd2BywWqRd01HW84HkGLqlgShTc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "234247742694-f78vt9mtvs5h0vu3i33bqmv84b1as5v0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
