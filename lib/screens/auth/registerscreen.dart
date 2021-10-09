@@ -19,6 +19,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool passIsHide = true;
   bool passIsTheSame = true;
   bool firebaseErr = false;
+  LoginCheck auth = LoginCheck();
   Profile profile = Profile(
     email: '',
     password: '',
@@ -237,10 +238,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 ),
                                                 formKey.currentState!.reset(),
                                                 firebaseErr = false,
+                                                auth.hasLogin = true,
                                                 Future.delayed(
                                                     const Duration(seconds: 1),
                                                     () async {
-                                                  await Navigator.push(
+                                                  await Navigator.pushReplacement(
                                                     context,
                                                     PageRouteBuilder(
                                                         transitionDuration:
@@ -370,7 +372,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               color: Colors.pink,
                               indent: 5,
                             )),
-                          ])
+                          ]),
                         ],
                       ),
                     ),

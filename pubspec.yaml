@@ -72,6 +72,7 @@ flutter:
    - images/Photographic_Introduction_2.png
    - images/Photographic_Introduction_3.png
    - images/logoTrans.png
+   - images/Unknown.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:myapp/screens/splashscreen.dart';
-
 void main() {
   const app = MyApp();
   runApp(app);
@@ -15,7 +14,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
   @override
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();

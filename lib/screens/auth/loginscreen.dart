@@ -17,6 +17,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool firebaseErr = false;
   final formKey = GlobalKey<FormState>();
+  LoginCheck auth = LoginCheck();
   Profile profile = Profile(
     email: '',
     password: '',
@@ -200,41 +201,45 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         ToastGravity.CENTER,
                                                   ),
                                                   formKey.currentState!.reset(),
+                                                  auth.hasLogin = true,
                                                   Future.delayed(
-                                                    const Duration(seconds: 1),
-                                                    () async {
-                                                  await Navigator.push(
-                                                    context,
-                                                    PageRouteBuilder(
-                                                        transitionDuration:
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    500),
-                                                        transitionsBuilder:
-                                                            (context,
-                                                                animation,
-                                                                animationTime,
-                                                                child) {
-                                                          animation =
-                                                              CurvedAnimation(
-                                                                  parent:
-                                                                      animation,
-                                                                  curve: Curves
-                                                                      .linearToEaseOut);
-                                                          return ScaleTransition(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              scale: animation,
-                                                              child: child);
-                                                        },
-                                                        pageBuilder: (context,
-                                                            animation,
-                                                            animationTime) {
-                                                          return const MainScreen();
-                                                        }),
-                                                  );
-                                                })
+                                                      const Duration(
+                                                          seconds: 1),
+                                                      () async {
+                                                    await Navigator
+                                                        .pushReplacement(
+                                                      context,
+                                                      PageRouteBuilder(
+                                                          transitionDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      500),
+                                                          transitionsBuilder:
+                                                              (context,
+                                                                  animation,
+                                                                  animationTime,
+                                                                  child) {
+                                                            animation =
+                                                                CurvedAnimation(
+                                                                    parent:
+                                                                        animation,
+                                                                    curve: Curves
+                                                                        .linearToEaseOut);
+                                                            return ScaleTransition(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                scale:
+                                                                    animation,
+                                                                child: child);
+                                                          },
+                                                          pageBuilder: (context,
+                                                              animation,
+                                                              animationTime) {
+                                                            return const MainScreen();
+                                                          }),
+                                                    );
+                                                  })
                                                 });
                                       } on FirebaseAuthException catch (e) {
                                         Fluttertoast.showToast(

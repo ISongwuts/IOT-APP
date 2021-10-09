@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
-// ignore: import_of_legacy_library_into_null_safe
+import 'package:myapp/screens/mainscreen.dart';
+import 'package:myapp/screens/model/profile.dart';
 import 'package:splashscreen/splashscreen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:myapp/screens/introduction.dart';
@@ -14,6 +15,7 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
+  LoginCheck auth = LoginCheck();
   bool isConnected = false;
   late StreamSubscription sub;
   @override
@@ -35,9 +37,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 2,
-      navigateAfterSeconds: 
-        isConnected ? const OnBoardingPage()
-                    : const NoConnectionScreen(),
+      navigateAfterSeconds: auth.hasLogin ? const MainScreen() : const OnBoardingPage(),
       image: Image.asset('images/logoTrans.png'),
       backgroundColor: Colors.white,
       styleTextUnderTheLoader: const TextStyle(color: Colors.deepPurple),
