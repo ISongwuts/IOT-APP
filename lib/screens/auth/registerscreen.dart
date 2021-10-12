@@ -19,7 +19,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   bool passIsHide = true;
   bool passIsTheSame = true;
   bool firebaseErr = false;
-  LoginCheck auth = LoginCheck();
   Profile profile = Profile(
     email: '',
     password: '',
@@ -37,7 +36,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget TextForm(String title) {
     return Text(title,
         style: const TextStyle(
-            fontSize: 15, color: Colors.pink, fontWeight: FontWeight.bold));
+            fontSize: 15,
+            color: Color(0xffabd8ed),
+            fontWeight: FontWeight.bold));
   }
 
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
@@ -66,16 +67,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 title: const Text(
                   "ลงทะเบียน",
                   style: TextStyle(
-                    color: Colors.pink,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 iconTheme: const IconThemeData(
-                  color: Colors.pink,
+                  color: Colors.white,
                 ),
-                backgroundColor: Colors.white,
-                elevation: 1,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
               ),
+              backgroundColor: const Color(0xff131818),
               body: Container(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
@@ -93,7 +95,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 style: TextStyle(
                                     fontSize: 50,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.pink)),
+                                    color: Color(0xffabd8ed))),
                           ),
                           Container(
                             alignment: Alignment.topCenter,
@@ -104,20 +106,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     style: TextStyle(
                                         fontSize: 14,
                                         fontWeight: FontWeight.bold,
-                                        color: Colors.black),
+                                        color: Colors.white),
                                     children: [
                                   TextSpan(
                                       text: "SMART HOME",
                                       style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.pink)),
+                                          color: Color(0xffabd8ed))),
                                 ])),
                           ),
                           TextForm("Email"),
                           Container(
                             margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                             child: TextFormField(
+                                style:
+                                    const TextStyle(color: Color(0xffabd8ed)),
+                                cursorColor: Color(0xff292a2a),
                                 validator: MultiValidator([
                                   RequiredValidator(
                                       errorText: "Please insert the email."),
@@ -135,14 +140,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 decoration: InputDecoration(
                                     labelText: 'Enter E-mail',
                                     hintText: 'Example@gmail.com',
+                                    labelStyle:
+                                        TextStyle(color: Color(0xffabd8ed)),
+                                    hintStyle:
+                                        TextStyle(color: Color(0xffabd8ed)),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          width: 1, color: Colors.pink),
+                                          width: 1, color: Color(0xffabd8ed)),
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          width: 3, color: Colors.pink),
+                                          width: 3, color: Color(0xffabd8ed)),
                                       borderRadius: BorderRadius.circular(15),
                                     ))),
                           ),
@@ -150,6 +159,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Container(
                             margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                             child: TextFormField(
+                                style:
+                                    const TextStyle(color: Color(0xffabd8ed)),
+                                cursorColor: Color(0xff292a2a),
                                 validator: MultiValidator([
                                   RequiredValidator(
                                       errorText: "Please insert the password."),
@@ -163,21 +175,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 obscureText: passIsHide ? true : false,
                                 decoration: InputDecoration(
                                     suffixIcon: IconButton(
-                                      color: Colors.pink,
+                                      color: Color(0xffabd8ed),
                                       icon: passIsHide
                                           ? const Icon(Icons.visibility_off)
                                           : const Icon(Icons.visibility),
                                       onPressed: visibilityHandler,
                                     ),
                                     labelText: 'Enter Password',
+                                    labelStyle:
+                                        TextStyle(color: Color(0xffabd8ed)),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          width: 1, color: Colors.pink),
+                                          width: 1, color: Color(0xffabd8ed)),
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          width: 3, color: Colors.pink),
+                                          width: 3, color: Color(0xffabd8ed)),
                                       borderRadius: BorderRadius.circular(15),
                                     ))),
                           ),
@@ -185,6 +199,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Container(
                             margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                             child: TextFormField(
+                                style:
+                                    const TextStyle(color: Color(0xffabd8ed)),
+                                cursorColor: Color(0xff292a2a),
                                 validator: MultiValidator([
                                   RequiredValidator(
                                       errorText: "Please insert the password."),
@@ -197,15 +214,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 },
                                 obscureText: passIsHide ? true : false,
                                 decoration: InputDecoration(
+                                    labelStyle:
+                                        TextStyle(color: Color(0xffabd8ed)),
                                     labelText: 'Confirm Password',
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          width: 1, color: Colors.pink),
+                                          width: 1, color: Color(0xffabd8ed)),
                                       borderRadius: BorderRadius.circular(15),
                                     ),
                                     focusedBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
-                                          width: 3, color: Colors.pink),
+                                          width: 3, color: Color(0xffabd8ed)),
                                       borderRadius: BorderRadius.circular(15),
                                     ))),
                           ),
@@ -217,7 +236,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               width: 150,
                               child: ElevatedButton(
                                 child: const Text("Register",
-                                    style: TextStyle(fontSize: 20)),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        color: Color(0xff292a2a))),
                                 onPressed: () async {
                                   print(
                                       "pass = ${profile.password} | conPass = ${profile.confirmPassword}");
@@ -238,11 +259,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                 ),
                                                 formKey.currentState!.reset(),
                                                 firebaseErr = false,
-                                                auth.hasLogin = true,
                                                 Future.delayed(
                                                     const Duration(seconds: 1),
                                                     () async {
-                                                  await Navigator.pushReplacement(
+                                                  await Navigator
+                                                      .pushReplacement(
                                                     context,
                                                     PageRouteBuilder(
                                                         transitionDuration:
@@ -275,7 +296,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                   );
                                                 })
                                               });
-                                      
                                     } on FirebaseAuthException catch (e) {
                                       Fluttertoast.showToast(
                                         msg: e.message,
@@ -300,11 +320,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         );
                                 },
                                 style: ElevatedButton.styleFrom(
+                                    primary: Color(0xffabd8ed),
+                                    onPrimary: Color(0xffabd8ed),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
                                             BorderRadius.circular(18.0),
                                         side: const BorderSide(
-                                            color: Colors.red))),
+                                            color: Color(0xffabd8ed)))),
                               ),
                             ),
                           ),
@@ -315,13 +337,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               const TextSpan(
                                 text: "หากมีบัญชีอยู่แล้ว ",
                                 style: TextStyle(
-                                  color: Colors.black,
+                                  color: Colors.white,
                                 ),
                               ),
                               TextSpan(
                                 text: "กดที่นี่",
                                 style: const TextStyle(
-                                  color: Colors.pink,
+                                  color: Color(0xffabd8ed),
                                   fontWeight: FontWeight.bold,
                                   decoration: TextDecoration.underline,
                                 ),
@@ -356,20 +378,20 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                 child: Divider(
                               height: 35,
                               thickness: 1,
-                              color: Colors.pink,
+                              color: Color(0xffd0d0d0),
                               endIndent: 5,
                             )),
                             Text(
                               "หรือ",
                               style: TextStyle(
-                                color: Colors.pink,
+                                color: Color(0xffd0d0d0),
                               ),
                             ),
                             Expanded(
                                 child: Divider(
                               height: 35,
                               thickness: 1,
-                              color: Colors.pink,
+                              color: Color(0xffd0d0d0),
                               indent: 5,
                             )),
                           ]),

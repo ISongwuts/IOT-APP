@@ -15,7 +15,6 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  LoginCheck auth = LoginCheck();
   bool isConnected = false;
   late StreamSubscription sub;
   @override
@@ -37,12 +36,12 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return SplashScreen(
       seconds: 2,
-      navigateAfterSeconds: auth.hasLogin ? const MainScreen() : const OnBoardingPage(),
+      navigateAfterSeconds: const OnBoardingPage(),
       image: Image.asset('images/logoTrans.png'),
-      backgroundColor: Colors.white,
-      styleTextUnderTheLoader: const TextStyle(color: Colors.deepPurple),
+      backgroundColor: const Color(0xff131818),
+      styleTextUnderTheLoader: const TextStyle(color: Color(0xffabd8ed)),
       photoSize: 150,
-      loaderColor: const Color(0xffe4213f),
+      loaderColor: const Color(0xffabd8ed),
     );
   }
 }

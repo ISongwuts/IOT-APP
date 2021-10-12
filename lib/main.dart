@@ -27,7 +27,8 @@ class _MyAppState extends State<MyApp> {
         body: SplashPage(),
       ),
       theme: ThemeData(
-        primarySwatch: Colors.pink,
+        primaryColor: const Color(0xff61dafb),
+        backgroundColor: const Color(0xff292a2a),
       ),
     );
   }

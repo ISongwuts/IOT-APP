@@ -44,6 +44,9 @@ dependencies:
   firebase_core: ^1.7.0
   firebase_auth: ^3.1.3
   fluttertoast: ^3.1.0
+  syncfusion_flutter_charts: ^19.3.44+1
+  flutter_colorpicker: ^0.6.0
+  color_convert: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -73,6 +76,8 @@ flutter:
    - images/Photographic_Introduction_3.png
    - images/logoTrans.png
    - images/Unknown.png
+   - images/lbon.png
+   - images/lboff.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

@@ -27,7 +27,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
       dotsDecorator: DotsDecorator(
           size: const Size.square(10.0),
           activeSize: const Size(20.0, 10.0),
-          activeColor: Colors.pink,
+          activeColor: const Color(0xffabd8ed),
           color: Colors.black26,
           spacing: const EdgeInsets.symmetric(horizontal: 3.0),
           activeShape: RoundedRectangleBorder(

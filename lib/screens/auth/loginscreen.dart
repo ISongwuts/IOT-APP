@@ -17,7 +17,6 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   bool firebaseErr = false;
   final formKey = GlobalKey<FormState>();
-  LoginCheck auth = LoginCheck();
   Profile profile = Profile(
     email: '',
     password: '',
@@ -33,7 +32,9 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget TextForm(String title) {
     return Text(title,
         style: const TextStyle(
-            fontSize: 15, color: Colors.pink, fontWeight: FontWeight.bold));
+            fontSize: 15,
+            color: Color(0xffabd8ed),
+            fontWeight: FontWeight.bold));
   }
 
   final Future<FirebaseApp> firebase = Firebase.initializeApp();
@@ -62,16 +63,17 @@ class _LoginScreenState extends State<LoginScreen> {
                 title: const Text(
                   "เข้าสู่ระบบ",
                   style: TextStyle(
-                    color: Colors.pink,
+                    color: Colors.white,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 iconTheme: const IconThemeData(
-                  color: Colors.pink,
+                  color: Colors.white,
                 ),
-                backgroundColor: Colors.white,
-                elevation: 1,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
               ),
+              backgroundColor: const Color(0xff131818),
               body: Container(
                 child: Padding(
                   padding: const EdgeInsets.fromLTRB(15, 20, 15, 15),
@@ -89,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   style: TextStyle(
                                       fontSize: 50,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.pink)),
+                                      color: Color(0xffabd8ed))),
                             ),
                             Container(
                               alignment: Alignment.topCenter,
@@ -100,20 +102,21 @@ class _LoginScreenState extends State<LoginScreen> {
                                       style: TextStyle(
                                           fontSize: 14,
                                           fontWeight: FontWeight.bold,
-                                          color: Colors.black),
+                                          color: Colors.white),
                                       children: [
                                     TextSpan(
                                         text: "SMART HOME",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
-                                            color: Colors.pink)),
+                                            color: Color(0xffabd8ed))),
                                   ])),
                             ),
                             TextForm("Email"),
                             Container(
                               margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                               child: TextFormField(
+                                  cursorColor: Color(0xffabd8ed),
                                   validator: MultiValidator([
                                     RequiredValidator(
                                         errorText: "Please insert the email."),
@@ -128,17 +131,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                     profile.email = email!;
                                   },
                                   keyboardType: TextInputType.emailAddress,
+                                  style:
+                                      const TextStyle(color: Color(0xffabd8ed)),
                                   decoration: InputDecoration(
                                       labelText: 'Enter E-mail',
                                       hintText: 'Example@gmail.com',
+                                      labelStyle:
+                                          TextStyle(color: Color(0xffabd8ed)),
+                                      hintStyle:
+                                          TextStyle(color: Color(0xffabd8ed)),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
-                                            width: 1, color: Colors.pink),
+                                            width: 1, color: Color(0xffabd8ed)),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
-                                            width: 3, color: Colors.pink),
+                                            width: 3, color: Color(0xffabd8ed)),
                                         borderRadius: BorderRadius.circular(15),
                                       ))),
                             ),
@@ -146,6 +155,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             Container(
                               margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                               child: TextFormField(
+                                  style:
+                                      const TextStyle(color: Color(0xffabd8ed)),
+                                  cursorColor: Color(0xffabd8ed),
                                   validator: MultiValidator([
                                     RequiredValidator(
                                         errorText:
@@ -160,21 +172,23 @@ class _LoginScreenState extends State<LoginScreen> {
                                   obscureText: passIsHide ? true : false,
                                   decoration: InputDecoration(
                                       suffixIcon: IconButton(
-                                        color: Colors.pink,
+                                        color: Color(0xffabd8ed),
                                         icon: passIsHide
                                             ? const Icon(Icons.visibility_off)
                                             : const Icon(Icons.visibility),
                                         onPressed: visibilityHandler,
                                       ),
                                       labelText: 'Enter Password',
+                                      labelStyle:
+                                          TextStyle(color: Color(0xffabd8ed)),
                                       enabledBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
-                                            width: 1, color: Colors.pink),
+                                            width: 1, color: Color(0xffabd8ed)),
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       focusedBorder: OutlineInputBorder(
                                         borderSide: const BorderSide(
-                                            width: 3, color: Colors.pink),
+                                            width: 3, color: Color(0xffabd8ed)),
                                         borderRadius: BorderRadius.circular(15),
                                       ))),
                             ),
@@ -186,7 +200,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 width: 100,
                                 child: ElevatedButton(
                                   child: const Text("Login",
-                                      style: TextStyle(fontSize: 20)),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          color: Color(0xff292a2a))),
                                   onPressed: () async {
                                     if (formKey.currentState!.validate()) {
                                       try {
@@ -201,7 +217,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                                         ToastGravity.CENTER,
                                                   ),
                                                   formKey.currentState!.reset(),
-                                                  auth.hasLogin = true,
                                                   Future.delayed(
                                                       const Duration(
                                                           seconds: 1),
@@ -254,11 +269,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                     }
                                   },
                                   style: ElevatedButton.styleFrom(
+                                      primary: Color(0xffabd8ed),
+                                      onPrimary: Colors.blue,
                                       shape: RoundedRectangleBorder(
                                           borderRadius:
                                               BorderRadius.circular(18.0),
                                           side: const BorderSide(
-                                              color: Colors.red))),
+                                              color: Color(0xffabd8ed)))),
                                 ),
                               ),
                             ),
@@ -269,13 +286,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                 const TextSpan(
                                   text: "ลืมรหัสผ่านใช่หรือไม่ ",
                                   style: TextStyle(
-                                    color: Colors.black,
+                                    color: Colors.white,
                                   ),
                                 ),
                                 TextSpan(
                                   text: "กดที่นี่",
                                   style: const TextStyle(
-                                    color: Colors.pink,
+                                    color: Color(0xffabd8ed),
                                     fontWeight: FontWeight.bold,
                                     decoration: TextDecoration.underline,
                                   ),
@@ -311,7 +328,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             const Divider(
                               height: 35,
                               thickness: 1,
-                              color: Colors.pink,
+                              color: Color(0xffd0d0d0),
                               endIndent: 5,
                             ),
                           ]),
