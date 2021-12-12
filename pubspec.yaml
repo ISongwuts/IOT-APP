@@ -47,6 +47,14 @@ dependencies:
   syncfusion_flutter_charts: ^19.3.44+1
   flutter_colorpicker: ^0.6.0
   color_convert: ^1.0.2
+  charts_flutter: ^0.11.0
+  http: ^0.13.4
+  dio: ^4.0.0
+  uuid: ^3.0.5
+  curved_navigation_bar: ^1.0.1
+  speech_to_text: ^5.1.1
+  avatar_glow: ^2.0.1
+  shared_preferences: ^2.0.8
 
 dev_dependencies:
   flutter_test:
@@ -78,6 +86,7 @@ flutter:
    - images/Unknown.png
    - images/lbon.png
    - images/lboff.png
+   - images/Thaiflag.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

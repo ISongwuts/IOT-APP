@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:myapp/screens/auth/loginscreen.dart';
+import 'package:myapp/screens/auth/verifyscreen.dart';
 import 'package:myapp/screens/mainscreen.dart';
 import 'package:myapp/screens/model/profile.dart';
 
@@ -291,7 +292,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                                         pageBuilder: (context,
                                                             animation,
                                                             animationTime) {
-                                                          return const MainScreen();
+                                                          return const VerifyScreen();
                                                         }),
                                                   );
                                                 })
