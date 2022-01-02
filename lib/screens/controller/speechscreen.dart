@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/api/voice_recognition_api.dart';
 
+
 class SpeechScreen extends StatefulWidget {
   const SpeechScreen({Key? key}) : super(key: key);
 
@@ -248,42 +249,39 @@ class _SpeechScreenState extends State<SpeechScreen> {
       }
     }
     if (text == "ไอ้แดงเปิดหน้าต่างด้านหน้า") {
-        dbRef
-            .child("Gadget")
-            .child("Curtain")
-            .child(curtain_childPath[0][0])
-            .child(curtain_childPath[0][1])
-            .set("1");
-
+      dbRef
+          .child("Gadget")
+          .child("Curtain")
+          .child(curtain_childPath[0][0])
+          .child(curtain_childPath[0][1])
+          .set("1");
     }
     if (text == "ไอ้แดงปิดหน้าต่างด้านหน้า") {
-        dbRef
-            .child("Gadget")
-            .child("Curtain")
-            .child(curtain_childPath[0][0])
-            .child(curtain_childPath[0][1])
-            .set("0");
-
+      dbRef
+          .child("Gadget")
+          .child("Curtain")
+          .child(curtain_childPath[0][0])
+          .child(curtain_childPath[0][1])
+          .set("0");
     }
     if (text == "ไอ้แดงเปิดหน้าต่างด้านข้าง") {
-        dbRef
-            .child("Gadget")
-            .child("Curtain")
-            .child(curtain_childPath[1][0])
-            .child(curtain_childPath[0][1])
-            .set("1");
-
+      dbRef
+          .child("Gadget")
+          .child("Curtain")
+          .child(curtain_childPath[1][0])
+          .child(curtain_childPath[0][1])
+          .set("1");
     }
     if (text == "ไอ้แดงปิดหน้าต่างด้านข้าง") {
-        dbRef
-            .child("Gadget")
-            .child("Curtain")
-            .child(curtain_childPath[1][0])
-            .child(curtain_childPath[0][1])
-            .set("0");
+      dbRef
+          .child("Gadget")
+          .child("Curtain")
+          .child(curtain_childPath[1][0])
+          .child(curtain_childPath[0][1])
+          .set("0");
     }
     if (text.trim() == "ไอ้แดงเปิดหน้าต่างทั้ง 2 ด้าน") {
-      for(int index = 0; index<curtain_childPath.length; index++){
+      for (int index = 0; index < curtain_childPath.length; index++) {
         dbRef
             .child("Gadget")
             .child("Curtain")
@@ -293,7 +291,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
       }
     }
     if (text.trim() == "ไอ้แดงปิดหน้าต่างทั้ง 2 ด้าน") {
-      for(int index = 0; index<curtain_childPath.length; index++){
+      for (int index = 0; index < curtain_childPath.length; index++) {
         dbRef
             .child("Gadget")
             .child("Curtain")
@@ -304,6 +302,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
     }
   }
 }
+
 Widget DividerBetween(String title) {
   return Row(children: [
     const Expanded(
@@ -331,6 +330,7 @@ Widget DividerBetween(String title) {
     )),
   ]);
 }
+
 Widget CustomDivider() {
   return const Divider(
     height: 35,

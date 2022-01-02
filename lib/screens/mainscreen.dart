@@ -12,6 +12,7 @@ import 'package:myapp/screens/pages/covidreport.dart';
 import 'package:myapp/screens/pages/profilepage.dart';
 import 'package:myapp/screens/pages/settingpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -50,6 +51,13 @@ class _MainScreenState extends State<MainScreen> {
     const Icon(Icons.contact_support, size: 30),
     const Icon(Icons.settings, size: 30),
   ];
+
+  Future<void> _requestPermission() async {
+    var micStatus = await Permission.storage.status;
+    if (!micStatus.isGranted) {
+      await Permission.microphone.request();
+    }
+  }
 
   Future _getStatus() async {
     for (int index_of_stLoop = 0;
@@ -129,7 +137,7 @@ class _MainScreenState extends State<MainScreen> {
             )
           ],
         )),
-    Text("ABOUT"),
+    Text("เกี่ยวกับ"),
     Text("LOGOUT"),
   ];
 
@@ -150,6 +158,7 @@ class _MainScreenState extends State<MainScreen> {
       Widget Screen, Icon icon, String title, double TextSize) {
     return GestureDetector(
       onTap: () {
+        _requestPermission();
         Navigator.push(
             context,
             PageRouteBuilder(

@@ -55,6 +55,7 @@ dependencies:
   speech_to_text: ^5.1.1
   avatar_glow: ^2.0.1
   shared_preferences: ^2.0.8
+  permission_handler: ^8.3.0
 
 dev_dependencies:
   flutter_test:
@@ -87,6 +88,10 @@ flutter:
    - images/lbon.png
    - images/lboff.png
    - images/Thaiflag.png
+   - images/OurTeam.png
+   - images/Prim.png
+   - images/Ice.png
+   - images/Boss.png
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 

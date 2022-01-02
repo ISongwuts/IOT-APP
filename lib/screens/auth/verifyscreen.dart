@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:myapp/screens/mainscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({Key? key}) : super(key: key);
@@ -18,6 +19,13 @@ class _VerifyScreenState extends State<VerifyScreen> {
   bool isLoading = true;
   bool? isVerified = false;
   bool justTrue = false;
+
+  Future<void> _requestPermission() async {
+    var storageStatus = await Permission.storage.status;
+    if (!storageStatus.isGranted) {
+      await Permission.storage.request();
+    }
+  }
 
   saveData() async {
     SharedPreferences share_prefs = await SharedPreferences.getInstance();
@@ -139,6 +147,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                                         primary: Color(0xffabd8ed),
                                       ),
                                       onPressed: () async {
+                                        _requestPermission();
                                         if (token_id == check_token_id) {
                                           Fluttertoast.showToast(
                                             msg: "Token ถูกต้อง",

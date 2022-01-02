@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Container(
                                 alignment: Alignment.topCenter,
                                 margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                                child: const Texfluttet("IOTFSH",
+                                child: const Text("IOTFSH",
                                     style: TextStyle(
                                         fontSize: 50,
                                         fontWeight: FontWeight.bold,
