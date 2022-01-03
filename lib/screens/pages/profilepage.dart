@@ -21,8 +21,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   Expanded(
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
-                      child: Image.asset('images/OurTeam.png',
-                          fit: BoxFit.cover,
+                      child: Image.asset('images/logoTrans.png',
                           width: double.infinity,
                           height: 200),
                     ),

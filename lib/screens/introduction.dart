@@ -45,7 +45,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
           decoration: _getPageDecoration_1(),
         ),
         PageViewModel(
-          title: "PREFACE",
+          title: "Preface",
           body:
               "โปรเจกต์นี้สร้างขึันมาเพื่อตอบสนองความต้องการของผู้ใช้งานที่ขี้เกียจ :-; หากมีข้อผิดพลาดประการใดพวกเราต้องขออภัยมา ณ ที่นี้ด้วย",
           image: _ImagesBox('images/Photographic_Introduction_2.png'),
