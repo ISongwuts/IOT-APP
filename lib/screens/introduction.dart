@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 import 'package:myapp/screens/auth/registerscreen.dart';
 
-
 class OnBoardingPage extends StatefulWidget {
   const OnBoardingPage({Key? key}) : super(key: key);
 
@@ -11,8 +10,6 @@ class OnBoardingPage extends StatefulWidget {
 }
 
 class _OnBoardingPageState extends State<OnBoardingPage> {
-
-
   @override
   void initState() {
     super.initState();
@@ -21,26 +18,28 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
   Widget build(BuildContext context) {
     return SafeArea(
         child: IntroductionScreen(
+      globalBackgroundColor: Color(0xff131818),
       showNextButton: true,
       showDoneButton: true,
-      next: const Icon(Icons.arrow_forward),
+      next: const Icon(Icons.arrow_forward,color: Color(0xffabd8ed),),
       done: const Text(
         "SIGN IN",
         style: TextStyle(
           fontWeight: FontWeight.bold,
+          color: Color(0xffabd8ed)
         ),
       ),
       dotsDecorator: DotsDecorator(
           size: const Size.square(10.0),
           activeSize: const Size(20.0, 10.0),
           activeColor: const Color(0xffabd8ed),
-          color: Colors.black26,
+          color: Color(0xffaaaaaa),
           spacing: const EdgeInsets.symmetric(horizontal: 3.0),
           activeShape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(25.0))),
       pages: [
         PageViewModel(
-          title: "WELCOME",
+          title: "Welcome",
           body: "ยินดีต้อนรับเหล่าผู้ใช้งาน",
           image: _ImagesBox('images/Photographic_Introduction_1.png'),
           decoration: _getPageDecoration_1(),
@@ -82,12 +81,17 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
 
 Widget _ImagesBox(String path) {
   return Center(
-    child: Image.asset(
-      path,
-      fit: BoxFit.cover,
-      height: double.infinity,
-      width: double.infinity,
-      alignment: Alignment.center,
+    child: ClipRRect(
+      child: Padding(
+        padding: const EdgeInsets.all(15),
+        child: Image.asset(
+          path,
+          fit: BoxFit.fitWidth,
+          height: 300,
+          width: double.infinity,
+          alignment: Alignment.center,
+        ),
+      ),
     ),
   );
 }
@@ -96,22 +100,26 @@ _getPageDecoration_1() => const PageDecoration(
       titleTextStyle: TextStyle(
         fontSize: 40,
         fontWeight: FontWeight.bold,
+        color: Color(0xffabd8ed)
       ),
       bodyTextStyle: TextStyle(
         fontSize: 15,
+        color: Color(0xffeeeeee)
       ),
-      titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 40),
-      descriptionPadding: EdgeInsets.fromLTRB(0, 0, 0, 30),
-      imagePadding: EdgeInsets.fromLTRB(0, 250, 0, 0),
+      titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      descriptionPadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
+      imagePadding: EdgeInsets.fromLTRB(0, 0, 0, 0),
     );
 
 _getPageDecoration_2() => const PageDecoration(
       titleTextStyle: TextStyle(
         fontSize: 40,
         fontWeight: FontWeight.bold,
+        color: Color(0xffabd8ed)
       ),
       bodyTextStyle: TextStyle(
         fontSize: 15,
+        color: Color(0xffeeeeee)
       ),
       titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 40),
       imagePadding: EdgeInsets.fromLTRB(0, 20, 0, 0),
@@ -121,8 +129,9 @@ _getPageDecoration_3() => const PageDecoration(
       titleTextStyle: TextStyle(
         fontSize: 40,
         fontWeight: FontWeight.bold,
+        color: Color(0xffabd8ed)
       ),
-      bodyTextStyle: TextStyle(fontSize: 15, color: Colors.pink),
+      bodyTextStyle: TextStyle(fontSize: 15, color: Color(0xffeeeeee)),
       titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 40),
       imagePadding: EdgeInsets.fromLTRB(0, 200, 0, 0),
     );

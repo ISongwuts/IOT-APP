@@ -93,7 +93,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               Container(
                                 alignment: Alignment.topCenter,
                                 margin: const EdgeInsets.fromLTRB(0, 20, 0, 0),
-                                child: const Text("IOTFSH",
+                                child: const Text("IoTFSH",
                                     style: TextStyle(
                                         fontSize: 50,
                                         fontWeight: FontWeight.bold,
@@ -104,14 +104,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 margin: const EdgeInsets.fromLTRB(0, 0, 0, 20),
                                 child: RichText(
                                     text: const TextSpan(
-                                        text: "INTERNET OF THINGS FOR ",
+                                        text: "Internet of Things For ",
                                         style: TextStyle(
                                             fontSize: 14,
                                             fontWeight: FontWeight.bold,
                                             color: Colors.white),
                                         children: [
                                       TextSpan(
-                                          text: "SMART HOME",
+                                          text: "Smart Home",
                                           style: TextStyle(
                                               fontSize: 14,
                                               fontWeight: FontWeight.bold,
