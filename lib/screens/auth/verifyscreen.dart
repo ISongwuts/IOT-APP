@@ -17,7 +17,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   late String token_id;
   late String check_token_id;
   bool isLoading = true;
-  bool? isVerified = false;
+  bool isVerified = false;
   bool justTrue = false;
 
   Future<void> _requestPermission() async {
@@ -35,7 +35,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
   readData() async {
     SharedPreferences share_prefs = await SharedPreferences.getInstance();
     setState(() {
-      isVerified = share_prefs.getBool('isVerified');
+      isVerified = share_prefs.getBool('isVerified')!;
     });
   }
 
@@ -79,7 +79,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     return Center(
       child: isLoading
           ? CircularProgressIndicator()
-          : isVerified!
+          : isVerified
               ? MainScreen()
               : Scaffold(
                   appBar: AppBar(

@@ -24,7 +24,6 @@ class _SplashPageState extends State<SplashPage> {
   final dbRef = FirebaseDatabase.instance.reference();
   bool isLoading = false;
   
-
   void detectUser() async {
     FirebaseAuth _auth1 = await FirebaseAuth.instance;
 

@@ -22,8 +22,7 @@ class _ProfilePageState extends State<ProfilePage> {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(8.0),
                       child: Image.asset('images/logoTrans.png',
-                          width: double.infinity,
-                          height: 200),
+                          width: double.infinity, height: 200),
                     ),
                   ),
                 ],
@@ -85,9 +84,24 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               Column(
                 children: [
-                  contactUs(Icon(Icons.phone, color: Color(0xffabd8ed),), "094-427-1168"),
-                  contactUs(Icon(Icons.mail, color: Color(0xffabd8ed),), "ISongwut.me@gmail.com"),
-                  contactUs(Icon(Icons.facebook, color: Color(0xffabd8ed),), "ไอซ์ ทรงวุฒิ"),
+                  contactUs(
+                      Icon(
+                        Icons.phone,
+                        color: Color(0xffabd8ed),
+                      ),
+                      "094-427-1168"),
+                  contactUs(
+                      Icon(
+                        Icons.mail,
+                        color: Color(0xffabd8ed),
+                      ),
+                      "ISongwut.me@gmail.com"),
+                  contactUs(
+                      Icon(
+                        Icons.facebook,
+                        color: Color(0xffabd8ed),
+                      ),
+                      "ไอซ์ ทรงวุฒิ"),
                 ],
               ),
               Container(
@@ -95,6 +109,16 @@ class _ProfilePageState extends State<ProfilePage> {
                     padding: EdgeInsets.all(15),
                     child: DividerBetween("เกี่ยวกับแอปฯ")),
               ),
+              Column(
+                children: [
+                  Row(
+                    children: [
+                      AppContent("แอปพลิเคชัน",
+                          " นี้สร้างขึ้นโดยใช้ Flutter Framework ซึ่งใช้ภาษา Dart ในการเขียนและพัฒนาแอปพลิเคชัน และ ใช้ realtime database ของ Firebase ในการสั่งการเปิด-ปิดไฟ โดยหลักการทำงานคือการรับค่าจากปุ่มแต่ละปุ่มแบบ realtime และส่งค่าขึ้นไปยัง realtime database และอุปกรณ์ที่เราเขียนโปรแกรมไว้จะทำการดึงค่าแบบ realtime ไปใช้งานและสั่งงานอุปกรณ์ต่าง ๆ ตามที่ต่อและเขียนโปรแกรมไว้"),
+                    ],
+                  )
+                ],
+              )
             ],
           ),
         ),
@@ -122,6 +146,26 @@ Widget contactUs(Icon icon, String des) {
         ),
       )
     ],
+  ));
+}
+
+Widget AppContent(String name, String content) {
+  return (Container(
+    child: Flexible(
+        child: Padding(
+      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+      child: RichText(
+          textAlign: TextAlign.center,
+          text: TextSpan(
+              text: name,
+              style: TextStyle(color: Color(0xffabd8ed), fontSize: 25),
+              children: [
+                TextSpan(
+                  text: content,
+                  style: TextStyle(color: Color(0xffdddddd), fontSize: 15),
+                ),
+              ])),
+    )),
   ));
 }
 
