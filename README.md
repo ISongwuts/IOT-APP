@@ -14,7 +14,8 @@ A few resources to get you started if this is your first Flutter project:
 
 ## Release APK
 
-- [Download IoTFSH-v3.1 Here.](https://drive.google.com/file/d/1b8Q9-dxZxOKr6NbW_1XWEZbwrB30CaJO/view?usp=sharing)
+- [Download IoTFSH-v3.1 Here.](https://drive.google.com/file/d/1b8Q9-dxZxOKr6NbW_1XWEZbwrB30CaJO/view?usp=sharing) 
+(Blank screen fixed)
 - [Download IoTFSH-v3 Here.](https://drive.google.com/file/d/1KVuR9SKqLaPJfXvvO98D1KSlJ7Y7sm8u/view?usp=sharing)
 - [Download IoTFSH-v1 Here.](https://drive.google.com/file/d/1dq_PP-hX8XHmfsi39bDdeWUaC47j_3_J/view?usp=sharing)
 
