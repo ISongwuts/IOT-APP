@@ -13,7 +13,8 @@ A few resources to get you started if this is your first Flutter project:
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
 ## Release APK
-
+- [Download IoTFSH-v3.2 Here.](https://drive.google.com/file/d/1OnYn-UE_yzC0-Jkgm8FNMnOKP716dKy4/view?usp=sharing)
+(Fixed about screen cannot show data)
 - [Download IoTFSH-v3.1 Here.](https://drive.google.com/file/d/1b8Q9-dxZxOKr6NbW_1XWEZbwrB30CaJO/view?usp=sharing) 
 (Blank screen fixed)
 - [Download IoTFSH-v3 Here.](https://drive.google.com/file/d/1KVuR9SKqLaPJfXvvO98D1KSlJ7Y7sm8u/view?usp=sharing)
