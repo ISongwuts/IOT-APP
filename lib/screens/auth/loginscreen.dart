@@ -4,11 +4,16 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:myapp/screens/auth/authvalidation.dart';
 import 'package:myapp/screens/auth/registerscreen.dart';
 import 'package:myapp/screens/auth/verifyscreen.dart';
 import 'package:myapp/screens/mainscreen.dart';
 import 'package:myapp/screens/model/profile.dart';
+import 'package:provider/provider.dart';
+
+import 'googleauth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -257,7 +262,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                             pageBuilder: (context,
                                                                 animation,
                                                                 animationTime) {
-                                                              return const VerifyScreen();
+                                                              return const AuthValidation();
                                                             }),
                                                             
                                                       );
@@ -332,12 +337,74 @@ class _LoginScreenState extends State<LoginScreen> {
                                   ),
                                 ])),
                               ),
-                              const Divider(
-                                height: 35,
-                                thickness: 1,
+                              Row(children: const [
+                            Expanded(
+                                child: Divider(
+                              height: 35,
+                              thickness: 1,
+                              color: Color(0xffd0d0d0),
+                              endIndent: 5,
+                            )),
+                            Text(
+                              "หรือ",
+                              style: TextStyle(
                                 color: Color(0xffd0d0d0),
-                                endIndent: 5,
                               ),
+                            ),
+                            Expanded(
+                                child: Divider(
+                              height: 35,
+                              thickness: 1,
+                              color: Color(0xffd0d0d0),
+                              indent: 5,
+                            )),
+                          ]),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                MaterialButton(
+                                  onPressed: () async {
+                                    final _provider =
+                                        Provider.of<GoogleSignInProvider>(
+                                            context,
+                                            listen: false);
+                                    await _provider.googleLogin();
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                          transitionDuration:
+                                              Duration(milliseconds: 500),
+                                          transitionsBuilder: (context,
+                                              animation, animationTime, child) {
+                                            animation = CurvedAnimation(
+                                                parent: animation,
+                                                curve: Curves.linearToEaseOut);
+                                            return ScaleTransition(
+                                                alignment: Alignment.center,
+                                                scale: animation,
+                                                child: child);
+                                          },
+                                          pageBuilder: (context, animation,
+                                              animationTime) {
+                                            return const AuthValidation();
+                                          }),
+                                    );
+                                  },
+                                  color: Color(0xffabd8ed),
+                                  textColor: Colors.white,
+                                  child: FaIcon(
+                                    FontAwesomeIcons.google,
+                                    size: 24,
+                                    color: Color(0xff181818),
+                                  ),
+                                  padding: EdgeInsets.all(16),
+                                  shape: CircleBorder(),
+                                ),
+                              ],
+                            ),
+                          )
                             ]),
                       ),
                     ),

@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -14,6 +15,8 @@ class VerifyScreen extends StatefulWidget {
 
 class _VerifyScreenState extends State<VerifyScreen> {
   final dbRef = FirebaseDatabase.instance.reference();
+  final user = FirebaseAuth.instance.currentUser!;
+  bool userFromGg = false;
   late String? token_id;
   late String? check_token_id;
   bool isLoading = true;
@@ -36,6 +39,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
     SharedPreferences share_prefs = await SharedPreferences.getInstance();
     setState(() {
       isVerified = share_prefs.getBool('isVerified')!;
+      checkUser();
     });
   }
 
@@ -51,6 +55,14 @@ class _VerifyScreenState extends State<VerifyScreen> {
       });
     } on Exception catch (e) {
       print(e);
+    }
+  }
+
+  void checkUser() async {
+    if (user.photoURL! == null) {
+      userFromGg = false;
+    } else {
+      userFromGg = true;
     }
   }
 
@@ -98,10 +110,31 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       child: ListView(
                         children: [
                           Container(
-                            margin: EdgeInsets.fromLTRB(15, 230, 15, 15),
+                            margin: EdgeInsets.fromLTRB(15, 25, 15, 15),
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.fromLTRB(0, 0, 0, 25),
+                                  child: Container(
+                                    width: 125.0,
+                                    height: 125.0,
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xff7c94b6),
+                                      image: DecorationImage(
+                                        image: userFromGg ? NetworkImage(user.photoURL!) : AssetImage('images/Unknown.png') as ImageProvider,
+                                        fit: BoxFit.cover,
+                                      ),
+                                      borderRadius: BorderRadius.all(
+                                          Radius.circular(65.0)),
+                                      border: Border.all(
+                                        color: Color(0xffabd8ed),
+                                        width: 4.0,
+                                      ),
+                                    ),
+                                  ),
+                                ),
                                 TextForm("Please enter verification token"),
                                 Container(
                                   margin:

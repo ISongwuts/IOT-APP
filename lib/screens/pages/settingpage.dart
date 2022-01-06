@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:myapp/screens/auth/googleauth.dart';
 import 'package:myapp/screens/auth/loginscreen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wiredash/wiredash.dart';
@@ -16,7 +17,7 @@ class _SettingPageState extends State<SettingPage> {
   final dbRef = FirebaseDatabase.instance.reference();
   final auth = FirebaseAuth.instance;
   late bool? langIsSwap = true;
-
+  GoogleSignInProvider gp = new GoogleSignInProvider();
   swapLang(bool state) async {
     SharedPreferences share_prefs = await SharedPreferences.getInstance();
     share_prefs.setBool('langIsSwapped', state);
@@ -78,6 +79,7 @@ class _SettingPageState extends State<SettingPage> {
                   ),
                   onPressed: () async {
                     await saveData();
+                    gp.logout();
                     auth.signOut().then((value) => {
                           Navigator.push(
                             context,

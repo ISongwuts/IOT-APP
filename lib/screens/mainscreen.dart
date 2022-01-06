@@ -39,10 +39,20 @@ class _MainScreenState extends State<MainScreen> {
   late var curtainstate_arr = List<String>.filled(3, "", growable: false);
   final dbRef = FirebaseDatabase.instance.reference();
   final auth = FirebaseAuth.instance;
+  final user = FirebaseAuth.instance.currentUser!;
+  bool userFromGg = false;
   int index = 0;
   int previousPage = 0;
   bool isSlide = false;
   bool isLoading = false;
+
+  void checkUser() async {
+    if (user.photoURL! == null) {
+      userFromGg = false;
+    } else {
+      userFromGg = true;
+    }
+  }
 
   final BottomBarItems = <Widget>[
     const Icon(Icons.dashboard, size: 30),
@@ -59,6 +69,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future _getStatus() async {
+    checkUser();
     for (int index_of_stLoop = 0;
         index_of_stLoop < childPath.length;
         index_of_stLoop++) {
@@ -102,40 +113,7 @@ class _MainScreenState extends State<MainScreen> {
 
   final title = <Widget>[
     const Text("DASHBOARD"),
-    Container(
-        width: double.infinity,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text("COVID 19"),
-            Container(
-              margin: EdgeInsets.fromLTRB(10, 0, 0, 5),
-              decoration: BoxDecoration(
-                color: Color(0xffabd8ed),
-                borderRadius: BorderRadius.circular(50.0),
-              ),
-              width: 60,
-              child: Row(
-                children: [
-                  Container(
-                    width: 30,
-                    height: 30,
-                    child: Image(image: AssetImage('images/Thaiflag.png')),
-                  ),
-                  Container(
-                    child: const Text(
-                      "TH",
-                      style: TextStyle(
-                          color: Color(0xff181818),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 17),
-                    ),
-                  )
-                ],
-              ),
-            )
-          ],
-        )),
+    Text("COVID 19"),
     Text("เกี่ยวกับ"),
     Text("LOGOUT"),
   ];
@@ -360,7 +338,21 @@ class _MainScreenState extends State<MainScreen> {
                 backgroundColor: Colors.transparent,
                 centerTitle: true,
                 elevation: 0,
-                title: title[isSlide ? previousPage : index],
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    title[isSlide ? previousPage : index],
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        CircleAvatar(
+                          radius: 15,
+                          backgroundImage: userFromGg ? NetworkImage(user.photoURL!) : AssetImage('images/Unknown.png') as ImageProvider,
+                        )
+                      ]
+                    )
+                  ],
+                ),
               ),
               backgroundColor: const Color(0xff131818),
               body: index == 0

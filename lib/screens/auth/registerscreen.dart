@@ -4,10 +4,14 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:form_field_validator/form_field_validator.dart';
+import 'package:myapp/screens/auth/authvalidation.dart';
 import 'package:myapp/screens/auth/loginscreen.dart';
 import 'package:myapp/screens/auth/verifyscreen.dart';
 import 'package:myapp/screens/mainscreen.dart';
 import 'package:myapp/screens/model/profile.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:myapp/screens/auth/googleauth.dart';
+import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -396,6 +400,52 @@ class _RegisterScreenState extends State<RegisterScreen> {
                               indent: 5,
                             )),
                           ]),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                MaterialButton(
+                                  onPressed: () async {
+                                    final _provider =
+                                        Provider.of<GoogleSignInProvider>(
+                                            context,
+                                            listen: false);
+                                    await _provider.googleLogin();
+                                    Navigator.push(
+                                      context,
+                                      PageRouteBuilder(
+                                          transitionDuration:
+                                              Duration(milliseconds: 500),
+                                          transitionsBuilder: (context,
+                                              animation, animationTime, child) {
+                                            animation = CurvedAnimation(
+                                                parent: animation,
+                                                curve: Curves.linearToEaseOut);
+                                            return ScaleTransition(
+                                                alignment: Alignment.center,
+                                                scale: animation,
+                                                child: child);
+                                          },
+                                          pageBuilder: (context, animation,
+                                              animationTime) {
+                                            return const AuthValidation();
+                                          }),
+                                    );
+                                  },
+                                  color: Color(0xffabd8ed),
+                                  textColor: Colors.white,
+                                  child: FaIcon(
+                                    FontAwesomeIcons.google,
+                                    size: 24,
+                                    color: Color(0xff181818),
+                                  ),
+                                  padding: EdgeInsets.all(16),
+                                  shape: CircleBorder(),
+                                ),
+                              ],
+                            ),
+                          )
                         ],
                       ),
                     ),
