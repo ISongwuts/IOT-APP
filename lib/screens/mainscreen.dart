@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -22,6 +21,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  final _navigatorKey = GlobalKey<NavigatorState>();
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   var childPath = [
     ["light_bedroom", "light_state", "light_rgb_color"],
@@ -43,7 +43,6 @@ class _MainScreenState extends State<MainScreen> {
   int previousPage = 0;
   bool isSlide = false;
   bool isLoading = false;
-  late bool? isVerified;
 
   final BottomBarItems = <Widget>[
     const Icon(Icons.dashboard, size: 30),

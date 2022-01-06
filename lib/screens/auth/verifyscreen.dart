@@ -14,8 +14,8 @@ class VerifyScreen extends StatefulWidget {
 
 class _VerifyScreenState extends State<VerifyScreen> {
   final dbRef = FirebaseDatabase.instance.reference();
-  late String token_id;
-  late String check_token_id;
+  late String? token_id;
+  late String? check_token_id;
   bool isLoading = true;
   bool isVerified = false;
   bool justTrue = false;
