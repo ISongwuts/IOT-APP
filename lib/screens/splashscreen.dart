@@ -4,12 +4,10 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/screens/auth/verifyscreen.dart';
-import 'package:myapp/screens/mainscreen.dart';
-import 'package:myapp/screens/model/profile.dart';
+
 import 'package:splashscreen/splashscreen.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:myapp/screens/introduction.dart';
-import 'package:myapp/screens/noconnection.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({Key? key}) : super(key: key);

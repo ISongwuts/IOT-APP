@@ -150,7 +150,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         labelStyle:
                                             TextStyle(color: Color(0xffabd8ed)),
                                         hintStyle:
-                                            TextStyle(color: Color(0xffabd8ed)),
+                                            TextStyle(color: Color(0xffd2dfe5)),
                                         enabledBorder: OutlineInputBorder(
                                           borderSide: const BorderSide(
                                               width: 1, color: Color(0xffabd8ed)),
@@ -371,7 +371,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                             context,
                                             listen: false);
                                     await _provider.googleLogin();
-                                    Navigator.push(
+                                    await Navigator.push(
                                       context,
                                       PageRouteBuilder(
                                           transitionDuration:
@@ -392,7 +392,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                           }),
                                     );
                                   },
-                                  color: Color(0xffabd8ed),
+                                  color: Color(0xffffffff),
                                   textColor: Colors.white,
                                   child: FaIcon(
                                     FontAwesomeIcons.google,

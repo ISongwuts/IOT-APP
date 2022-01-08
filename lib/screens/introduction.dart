@@ -47,7 +47,7 @@ class _OnBoardingPageState extends State<OnBoardingPage> {
         PageViewModel(
           title: "Preface",
           body:
-              "โปรเจกต์นี้สร้างขึันมาเพื่อตอบสนองความต้องการของผู้ใช้งานที่ขี้เกียจ :-; หากมีข้อผิดพลาดประการใดพวกเราต้องขออภัยมา ณ ที่นี้ด้วย",
+              "โปรเจกต์นี้เป็นส่วนหนึ่งของชิ้นงานวิชาโครงการ ซึ่งสร้างขึ้นเพื่อตอบสนองความต้องการของผู้ใช้งานที่ต้องการสั่งการไฟ ผ้าม่าน จากระยะไกล และเพื่อช่วยเพิ่มความสะดวกสบายในชีวิตประจำวันอีกด้วย ทั้งนี้ หากมีข้อผิดพลาดประการใด ทางคณะผู้จัดทำต้องขออภัยมา ณ ที่นี้ด้วย",
           image: _ImagesBox('images/Photographic_Introduction_2.png'),
           decoration: _getPageDecoration_2(),
         ),
@@ -121,7 +121,7 @@ _getPageDecoration_2() => const PageDecoration(
         fontSize: 15,
         color: Color(0xffeeeeee)
       ),
-      titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 40),
+      titlePadding: EdgeInsets.fromLTRB(0, 0, 0, 10),
       imagePadding: EdgeInsets.fromLTRB(0, 20, 0, 0),
     );
 

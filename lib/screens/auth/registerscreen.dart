@@ -7,11 +7,11 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:myapp/screens/auth/authvalidation.dart';
 import 'package:myapp/screens/auth/loginscreen.dart';
 import 'package:myapp/screens/auth/verifyscreen.dart';
-import 'package:myapp/screens/mainscreen.dart';
 import 'package:myapp/screens/model/profile.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:myapp/screens/auth/googleauth.dart';
 import 'package:provider/provider.dart';
+import 'package:email_auth/email_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -20,7 +20,11 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final TextEditingController _otpcontroller = TextEditingController();
+  final TextEditingController _emailcontroller = TextEditingController();
   String firebaseErrMsg = "";
+  late bool isOTPvalidated;
+  EmailAuth emailAuth = EmailAuth(sessionName: '');
   bool passIsHide = true;
   bool passIsTheSame = true;
   bool firebaseErr = false;
@@ -36,6 +40,40 @@ class _RegisterScreenState extends State<RegisterScreen> {
     setState(() {
       passIsHide = !passIsHide;
     });
+  }
+
+  void sendOTP() async {
+    emailAuth.sessionName = "Enter this number into OTP input box.";
+    var res =
+        await emailAuth.sendOtp(recipientMail: _emailcontroller.value.text);
+    if (res && profile.password == profile.confirmPassword) {
+      Fluttertoast.showToast(
+        msg: "OTP Sent",
+        gravity: ToastGravity.BOTTOM,
+      );
+    } else {
+      Fluttertoast.showToast(
+        msg: "Error",
+        gravity: ToastGravity.BOTTOM,
+      );
+    }
+  }
+
+  void verifyOTP() async {
+    var res = emailAuth.validateOtp(
+        recipientMail: _emailcontroller.value.text,
+        userOtp: _otpcontroller.value.text);
+    if (res) {
+      setState(() {
+        isOTPvalidated = true;
+      });
+    } else {
+      Fluttertoast.showToast(
+        msg: "Invalid OTP",
+        gravity: ToastGravity.BOTTOM,
+      );
+      isOTPvalidated = false;
+    }
   }
 
   Widget TextForm(String title) {
@@ -83,8 +121,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 elevation: 0,
               ),
               backgroundColor: const Color(0xff131818),
-              body: Container(
-                child: Padding(
+              body: ListView(children: [
+                Padding(
                   padding: const EdgeInsets.fromLTRB(15, 0, 15, 15),
                   child: SingleChildScrollView(
                     child: Form(
@@ -125,6 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Container(
                             margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
                             child: TextFormField(
+                                controller: _emailcontroller,
                                 style:
                                     const TextStyle(color: Color(0xffabd8ed)),
                                 cursorColor: Color(0xff292a2a),
@@ -148,7 +187,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     labelStyle:
                                         TextStyle(color: Color(0xffabd8ed)),
                                     hintStyle:
-                                        TextStyle(color: Color(0xffabd8ed)),
+                                        TextStyle(color: Color(0xffd2dfe5)),
                                     enabledBorder: OutlineInputBorder(
                                       borderSide: const BorderSide(
                                           width: 1, color: Color(0xffabd8ed)),
@@ -233,6 +272,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                       borderRadius: BorderRadius.circular(15),
                                     ))),
                           ),
+                          TextForm("OTP Verification"),
+                          Container(
+                            margin: const EdgeInsets.fromLTRB(0, 15, 0, 15),
+                            child: TextFormField(
+                                controller: _otpcontroller,
+                                style:
+                                    const TextStyle(color: Color(0xffabd8ed)),
+                                cursorColor: Color(0xff292a2a),
+                                validator: MultiValidator([
+                                  RequiredValidator(
+                                      errorText: "Please enter OTP."),
+                                ]),
+                                decoration: InputDecoration(
+                                    suffixIcon: IconButton(
+                                        onPressed: sendOTP,
+                                        icon: FaIcon(
+                                          FontAwesomeIcons.reply,
+                                          color: Color(0xffabd8ed),
+                                        )),
+                                    labelStyle:
+                                        TextStyle(color: Color(0xffabd8ed)),
+                                    labelText: 'Enter OTP',
+                                    enabledBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          width: 1, color: Color(0xffabd8ed)),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    focusedBorder: OutlineInputBorder(
+                                      borderSide: const BorderSide(
+                                          width: 3, color: Color(0xffabd8ed)),
+                                      borderRadius: BorderRadius.circular(15),
+                                    ))),
+                          ),
                           Container(
                             alignment: Alignment.center,
                             margin: const EdgeInsets.fromLTRB(0, 0, 0, 15),
@@ -245,84 +317,91 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                         fontSize: 20,
                                         color: Color(0xff292a2a))),
                                 onPressed: () async {
+                                  verifyOTP();
                                   print(
                                       "pass = ${profile.password} | conPass = ${profile.confirmPassword}");
-                                  if (formKey.currentState!.validate() &&
-                                      profile.password.toString() ==
-                                          profile.confirmPassword.toString()) {
-                                    formKey.currentState!.save();
-                                    passIsTheSame = true;
-                                    try {
-                                      await FirebaseAuth.instance
-                                          .createUserWithEmailAndPassword(
-                                              email: profile.email,
-                                              password: profile.password)
-                                          .then((value) => {
-                                                Fluttertoast.showToast(
-                                                  msg: "ลงทะเบียนเสร็จสิ้น",
-                                                  gravity: ToastGravity.TOP,
-                                                ),
-                                                formKey.currentState!.reset(),
-                                                firebaseErr = false,
-                                                Future.delayed(
-                                                    const Duration(seconds: 1),
-                                                    () async {
-                                                  await Navigator
-                                                      .pushReplacement(
-                                                    context,
-                                                    PageRouteBuilder(
-                                                        transitionDuration:
-                                                            const Duration(
-                                                                milliseconds:
-                                                                    500),
-                                                        transitionsBuilder:
-                                                            (context,
-                                                                animation,
-                                                                animationTime,
-                                                                child) {
-                                                          animation =
-                                                              CurvedAnimation(
-                                                                  parent:
-                                                                      animation,
-                                                                  curve: Curves
-                                                                      .linearToEaseOut);
-                                                          return ScaleTransition(
-                                                              alignment:
-                                                                  Alignment
-                                                                      .center,
-                                                              scale: animation,
-                                                              child: child);
-                                                        },
-                                                        pageBuilder: (context,
-                                                            animation,
-                                                            animationTime) {
-                                                          return const VerifyScreen();
-                                                        }),
-                                                  );
-                                                })
-                                              });
-                                    } on FirebaseAuthException catch (e) {
-                                      Fluttertoast.showToast(
-                                        msg: e.message,
-                                        gravity: ToastGravity.CENTER,
-                                      );
-                                      print(e.message);
-                                      setState(() {
-                                        firebaseErrMsg = e.message!;
-                                        firebaseErr = true;
-                                      });
-                                    }
-                                  } else {
-                                    setState(() {
-                                      passIsTheSame = false;
-                                    });
-                                  }
-                                  passIsTheSame
-                                      ? null
-                                      : Fluttertoast.showToast(
-                                          msg: "Password is not the same",
+                                  if (isOTPvalidated) {
+                                    print("Otp is verified");
+                                    if (formKey.currentState!.validate() &&
+                                        profile.password.toString() ==
+                                            profile.confirmPassword
+                                                .toString()) {
+                                      formKey.currentState!.save();
+                                      passIsTheSame = true;
+                                      try {
+                                        await FirebaseAuth.instance
+                                            .createUserWithEmailAndPassword(
+                                                email: profile.email,
+                                                password: profile.password)
+                                            .then((value) => {
+                                                  Fluttertoast.showToast(
+                                                    msg: "ลงทะเบียนเสร็จสิ้น",
+                                                    gravity: ToastGravity.TOP,
+                                                  ),
+                                                  formKey.currentState!.reset(),
+                                                  firebaseErr = false,
+                                                  Future.delayed(
+                                                      const Duration(
+                                                          seconds: 1),
+                                                      () async {
+                                                    await Navigator
+                                                        .pushReplacement(
+                                                      context,
+                                                      PageRouteBuilder(
+                                                          transitionDuration:
+                                                              const Duration(
+                                                                  milliseconds:
+                                                                      500),
+                                                          transitionsBuilder:
+                                                              (context,
+                                                                  animation,
+                                                                  animationTime,
+                                                                  child) {
+                                                            animation =
+                                                                CurvedAnimation(
+                                                                    parent:
+                                                                        animation,
+                                                                    curve: Curves
+                                                                        .linearToEaseOut);
+                                                            return ScaleTransition(
+                                                                alignment:
+                                                                    Alignment
+                                                                        .center,
+                                                                scale:
+                                                                    animation,
+                                                                child: child);
+                                                          },
+                                                          pageBuilder: (context,
+                                                              animation,
+                                                              animationTime) {
+                                                            return const VerifyScreen();
+                                                          }),
+                                                    );
+                                                  })
+                                                });
+                                      } on FirebaseAuthException catch (e) {
+                                        Fluttertoast.showToast(
+                                          msg: e.message,
                                           gravity: ToastGravity.CENTER,
                                         );
+                                        print(e.message);
+                                        setState(() {
+                                          firebaseErrMsg = e.message!;
+                                          firebaseErr = true;
+                                        });
+                                      }
+                                    } else {
+                                      setState(() {
+                                        passIsTheSame = false;
+                                      });
+                                    }
+                                    passIsTheSame
+                                        ? null
+                                        : Fluttertoast.showToast(
+                                            msg: "Password is not the same",
+                                            gravity: ToastGravity.CENTER,
+                                          );
+                                  }
                                 },
                                 style: ElevatedButton.styleFrom(
                                     primary: Color(0xffabd8ed),
@@ -412,7 +491,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                             context,
                                             listen: false);
                                     await _provider.googleLogin();
-                                    Navigator.push(
+                                    await Navigator.push(
                                       context,
                                       PageRouteBuilder(
                                           transitionDuration:
@@ -433,7 +512,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                           }),
                                     );
                                   },
-                                  color: Color(0xffabd8ed),
+                                  color: Color(0xffffffff),
                                   textColor: Colors.white,
                                   child: FaIcon(
                                     FontAwesomeIcons.google,
@@ -451,7 +530,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
                 ),
-              ),
+              ]),
             );
           }
           return const Scaffold(
