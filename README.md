@@ -35,11 +35,11 @@ samples, guidance on mobile development, and a full API reference.
 
 ## App Ui
 <p align="left">
-<a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/1.jpg" height="220px"/></a>
-  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/2.jpg" height="220px"/></a>
-  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/3.jpg" height="220px"/></a>
-  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/4.jpg" height="220px"/></a>
-  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/5.jpg" height="220px"/></a>
-  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/6.jpg" height="220px"/></a>
+<a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/1.jpg" height="250px"/></a>
+  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/2.jpg" height="250px"/></a>
+  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/3.jpg" height="250px"/></a>
+  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/4.jpg" height="250px"/></a>
+  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/5.jpg" height="250px"/></a>
+  <a href="#"><img width="160px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/6.jpg" height="250px"/></a>
 </p>
 
