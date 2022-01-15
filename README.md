@@ -34,6 +34,7 @@ samples, guidance on mobile development, and a full API reference.
 </p>
 
 ## App Ui
+<center>
 <p align="left">
 <a href="#"><img width="250px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/1.jpg" height="350px"/></a>
   <a href="#"><img width="250px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/2.jpg" height="350px"/></a>
@@ -42,4 +43,5 @@ samples, guidance on mobile development, and a full API reference.
   <a href="#"><img width="250px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/5.jpg" height="350px"/></a>
   <a href="#"><img width="250px" height="auto" src="https://github.com/ISongwuts/IOT-APP/blob/main/images/App/6.jpg" height="350px"/></a>
 </p>
+  </center>
 
