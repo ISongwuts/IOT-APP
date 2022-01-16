@@ -28,6 +28,10 @@ class _SettingPageState extends State<SettingPage> {
   saveData() async {
     SharedPreferences share_prefs = await SharedPreferences.getInstance();
     share_prefs.setBool('isVerified', false);
+    share_prefs.setBool('isKnowTutorial', false);
+    share_prefs.setBool('isKnowTutorial-led', false);
+    share_prefs.setBool('isKnowTutorial-speech', false);
+    share_prefs.setBool('isKnowTutorial-curtain', false);
   }
 
   @override

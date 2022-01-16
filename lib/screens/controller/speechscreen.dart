@@ -2,7 +2,8 @@ import 'package:avatar_glow/avatar_glow.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/api/voice_recognition_api.dart';
-
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class SpeechScreen extends StatefulWidget {
   const SpeechScreen({Key? key}) : super(key: key);
@@ -12,6 +13,13 @@ class SpeechScreen extends StatefulWidget {
 }
 
 class _SpeechScreenState extends State<SpeechScreen> {
+  late TutorialCoachMark tutorialCoachMark_speech;
+  List<TargetFocus> targets_speech = <TargetFocus>[];
+
+  GlobalKey keyButton11 = GlobalKey();
+  GlobalKey keyButton12 = GlobalKey();
+
+  bool isKnowTutorial = false;
   final dbRef = FirebaseDatabase.instance.reference();
   bool isLoading = true;
   bool isListening = false;
@@ -67,11 +75,100 @@ class _SpeechScreenState extends State<SpeechScreen> {
     setState(() {
       isLoading = false;
     });
+    showTutorial();
+  }
+
+  void initTarget() {
+    targets_speech.add(
+        TargetFocus(identify: "Target 10", keyTarget: keyButton11, contents: [
+      TargetContent(
+          child: Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text("กล่องข้อความ",
+                      style: TextStyle(
+                          color: Color(0xffabd8ed),
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)),
+                  Text(
+                      "เราสามารถเช็คคำที่เราพูดได้ว่าทางแอปนั้นเข้าใจถูกหรือไม่",
+                      style: TextStyle(
+                        color: Color(0xffeeeeee),
+                        fontSize: 15,
+                      ))
+                ],
+              ),
+            ),
+          ],
+        ),
+      ))
+    ]));
+    targets_speech.add(
+        TargetFocus(identify: "Target 11", keyTarget: keyButton12, contents: [
+      TargetContent(
+        align: ContentAlign.top,
+          child: Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text("ปุ่มพูด",
+                      style: TextStyle(
+                          color: Color(0xffabd8ed),
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)),
+                  Text(
+                      "ผู้ใชังานสารถกดที่ปุ่มนี้และพูดคีย์เวิร์ด ชื่อฟังก์ชัน - สถานะ - อุปกรณ์ - ห้อง เช่น ไอ้แดงเปิดไฟห้องนอน",
+                      style: TextStyle(
+                        color: Color(0xffeeeeee),
+                        fontSize: 15,
+                      ))
+                ],
+              ),
+            ),
+          ],
+        ),
+      ))
+    ]));
+  }
+
+  saveData() async {
+    SharedPreferences share_prefs = await SharedPreferences.getInstance();
+    share_prefs.setBool('isKnowTutorial-speech', true);
+  }
+
+  readData() async {
+    SharedPreferences share_prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isKnowTutorial = share_prefs.getBool('isKnowTutorial-speech')!;
+    });
+    print(isKnowTutorial);
+  }
+
+  void showTutorial() async {
+    saveData();
+    if (isKnowTutorial == true) {
+      print("yes");
+    } else {
+      tutorialCoachMark_speech = TutorialCoachMark(context,
+          targets: targets_speech,
+          colorShadow: Color(0xff131818),
+          opacityShadow: 1)
+        ..show();
+      print("end");
+    }
   }
 
   @override
   void initState() {
     // TODO: implement initState
+    initTarget();
     _getState();
     super.initState();
   }
@@ -92,7 +189,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      backgroundColor: Color(0xff181818),
+      backgroundColor: Color(0xff131818),
       body: Center(
         child: RefreshIndicator(
           color: const Color(0xffabd8ed),
@@ -103,6 +200,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
               : ListView(
                   children: [
                     Padding(
+                      key: keyButton11,
                       padding: const EdgeInsets.all(15),
                       child: Column(
                         children: [
@@ -120,6 +218,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
         ),
       ),
       floatingActionButton: AvatarGlow(
+        key: keyButton12,
         animate: isListening,
         endRadius: 75,
         glowColor: Color(0xffabd8ed),

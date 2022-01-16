@@ -12,6 +12,7 @@ import 'package:myapp/screens/pages/profilepage.dart';
 import 'package:myapp/screens/pages/settingpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
+import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -21,6 +22,15 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  late TutorialCoachMark tutorialCoachMark;
+  List<TargetFocus> targets = <TargetFocus>[];
+
+  GlobalKey keyButton = GlobalKey();
+  GlobalKey keyButton1 = GlobalKey();
+  GlobalKey keyButton2 = GlobalKey();
+  GlobalKey keyButton3 = GlobalKey();
+  GlobalKey keyButton4 = GlobalKey();
+
   final _navigatorKey = GlobalKey<NavigatorState>();
   final GlobalKey<CurvedNavigationBarState> _bottomNavigationKey = GlobalKey();
   var childPath = [
@@ -45,6 +55,20 @@ class _MainScreenState extends State<MainScreen> {
   int previousPage = 0;
   bool isSlide = false;
   bool isLoading = false;
+  bool isKnowTutorial = false;
+
+  saveData() async {
+    SharedPreferences share_prefs = await SharedPreferences.getInstance();
+    share_prefs.setBool('isKnowTutorial', true);
+  }
+
+  readData() async {
+    SharedPreferences share_prefs = await SharedPreferences.getInstance();
+    setState(() {
+      isKnowTutorial = share_prefs.getBool('isKnowTutorial')!;
+    });
+    print(isKnowTutorial);
+  }
 
   void checkUser() async {
     if (user.photoURL! == null) {
@@ -69,6 +93,7 @@ class _MainScreenState extends State<MainScreen> {
   }
 
   Future _getStatus() async {
+    readData();
     checkUser();
     for (int index_of_stLoop = 0;
         index_of_stLoop < childPath.length;
@@ -125,15 +150,151 @@ class _MainScreenState extends State<MainScreen> {
     SettingPage(),
   ];
 
+  void initTarget() async {
+    targets
+        .add(TargetFocus(identify: "Target 1", keyTarget: keyButton, contents: [
+      TargetContent(
+          child: Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text("ฟังก์ชันควบคุมหลอดไฟ",
+                      style: TextStyle(
+                          color: Color(0xffabd8ed),
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)),
+                  Text(
+                      "ผู้ใชังานสามารถเปิด - ปิดหลอดไฟได้ด้วยการกดเข้าไปในฟังก์ชันนี้",
+                      style: TextStyle(
+                        color: Color(0xffeeeeee),
+                        fontSize: 15,
+                      ))
+                ],
+              ),
+            ),
+          ],
+        ),
+      ))
+    ]));
+    targets.add(
+        TargetFocus(identify: "Target 2", keyTarget: keyButton2, contents: [
+      TargetContent(
+          child: Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text("ฟังก์ชันควบคุมผ้าม่าน",
+                      style: TextStyle(
+                          color: Color(0xffabd8ed),
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)),
+                  Text(
+                      "ผู้ใชังานสามารถเปิด - ปิดผ้าม่านได้ด้วยการกดเข้าไปในฟังก์ชันนี้",
+                      style: TextStyle(
+                        color: Color(0xffeeeeee),
+                        fontSize: 15,
+                      ))
+                ],
+              ),
+            ),
+          ],
+        ),
+      ))
+    ]));
+    targets.add(
+        TargetFocus(identify: "Target 3", keyTarget: keyButton3, contents: [
+      TargetContent(
+          child: Container(
+        child: Column(
+          children: [
+            Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Column(
+                children: [
+                  Text("ฟังก์ชันควบคุมอุปกรณ์ผ่านเสียง",
+                      style: TextStyle(
+                          color: Color(0xffabd8ed),
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold)),
+                  Text(
+                      "ผู้ใชังานสามารถเปิด - ปิดหลอดไฟและผ้าม่านผ่านเสียงได้ด้วยการกดเข้าไปในฟังก์ชันนี้",
+                      style: TextStyle(
+                        color: Color(0xffeeeeee),
+                        fontSize: 15,
+                      ))
+                ],
+              ),
+            ),
+          ],
+        ),
+      ))
+    ]));
+    targets.add(TargetFocus(
+        identify: "Target 4",
+        keyTarget: keyButton4,
+        contents: [
+          TargetContent(
+              align: ContentAlign.top,
+              child: Container(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          Text("ฟังก์ชันแสดงสถานะของอุปกรณ์",
+                              style: TextStyle(
+                                  color: Color(0xffabd8ed),
+                                  fontSize: 25,
+                                  fontWeight: FontWeight.bold)),
+                          Text(
+                              "ผู้ใชังานสามารถดูสถานะของอุปกรณ์ได้ว่าปิดอยู่หรือเปิดอยู่หรือไม่",
+                              style: TextStyle(
+                                color: Color(0xffeeeeee),
+                                fontSize: 15,
+                              ))
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ))
+        ],
+        alignSkip: Alignment.topRight));
+  }
+
+  void showTutorial() async {
+    saveData();
+    if (isKnowTutorial == true) {
+      print("yes");
+    } else {
+      tutorialCoachMark = TutorialCoachMark(context,
+          targets: targets, colorShadow: Color(0xff131818), opacityShadow: 1)
+        ..show();
+      print("end");
+    }
+  }
+
   @override
   void initState() {
     _getStatus();
+    initTarget();
+    Future.delayed(Duration(seconds: 2), showTutorial);
     super.initState();
   }
 
   Widget HorizontalBox(
-      Widget Screen, Icon icon, String title, double TextSize) {
+      Widget Screen, Icon icon, String title, double TextSize, GlobalKey key) {
     return GestureDetector(
+      key: key,
       onTap: () {
         _requestPermission();
         Navigator.push(
@@ -342,15 +503,14 @@ class _MainScreenState extends State<MainScreen> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     title[isSlide ? previousPage : index],
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        CircleAvatar(
-                          radius: 15,
-                          backgroundImage: userFromGg ? NetworkImage(user.photoURL!) : AssetImage('images/Unknown.png') as ImageProvider,
-                        )
-                      ]
-                    )
+                    Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                      CircleAvatar(
+                        radius: 15,
+                        backgroundImage: userFromGg
+                            ? NetworkImage(user.photoURL!)
+                            : AssetImage('images/Unknown.png') as ImageProvider,
+                      )
+                    ])
                   ],
                 ),
               ),
@@ -398,23 +558,27 @@ class _MainScreenState extends State<MainScreen> {
                                             Icon(Icons.lightbulb_outlined,
                                                 size: 40),
                                             "Light",
-                                            20),
+                                            20,
+                                            keyButton),
                                         HorizontalBox(
                                             CurtainScreen(),
                                             Icon(Icons.festival_outlined,
                                                 size: 40),
                                             "Curtain",
-                                            20),
+                                            20,
+                                            keyButton2),
                                         HorizontalBox(
                                             SpeechScreen(),
                                             Icon(Icons.mic, size: 40),
                                             "Speech",
-                                            20),
+                                            20,
+                                            keyButton3),
                                       ],
                                     ),
                                   ),
                                   DividerBetween("Widget Status"),
                                   Container(
+                                    key: keyButton4,
                                     margin: EdgeInsets.fromLTRB(15, 5, 15, 35),
                                     width: double.infinity,
                                     decoration: const BoxDecoration(
