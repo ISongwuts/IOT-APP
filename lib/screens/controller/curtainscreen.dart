@@ -28,6 +28,7 @@ class _CurtainScreenState extends State<CurtainScreen> {
   ];
 
   _getCurtainState() async {
+    readData();
     for (int index = 0; index < childPath.length; index++) {
       await dbRef
           .child("Gadget")
@@ -88,7 +89,8 @@ class _CurtainScreenState extends State<CurtainScreen> {
                           color: Color(0xffabd8ed),
                           fontSize: 25,
                           fontWeight: FontWeight.bold)),
-                  Text("หากผู้ใชัเลื่อนผ้าม่านถึงจุดที่เหมาะสมสามารถกดปุ่มนี้เพื่อหยุดเลื่อนได้",
+                  Text(
+                      "หากผู้ใชัเลื่อนผ้าม่านถึงจุดที่เหมาะสมสามารถกดปุ่มนี้เพื่อหยุดเลื่อนได้",
                       style: TextStyle(
                         color: Color(0xffeeeeee),
                         fontSize: 15,

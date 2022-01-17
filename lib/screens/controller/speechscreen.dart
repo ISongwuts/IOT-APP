@@ -42,6 +42,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
   ];
 
   _getState() async {
+    readData(); 
     for (int index = 0; index < curtain_childPath.length; index++) {
       await dbRef
           .child("Gadget")
@@ -110,31 +111,31 @@ class _SpeechScreenState extends State<SpeechScreen> {
     targets_speech.add(
         TargetFocus(identify: "Target 11", keyTarget: keyButton12, contents: [
       TargetContent(
-        align: ContentAlign.top,
+          align: ContentAlign.top,
           child: Container(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                children: [
-                  Text("ปุ่มพูด",
-                      style: TextStyle(
-                          color: Color(0xffabd8ed),
-                          fontSize: 25,
-                          fontWeight: FontWeight.bold)),
-                  Text(
-                      "ผู้ใชังานสารถกดที่ปุ่มนี้และพูดคีย์เวิร์ด ชื่อฟังก์ชัน - สถานะ - อุปกรณ์ - ห้อง เช่น ไอ้แดงเปิดไฟห้องนอน",
-                      style: TextStyle(
-                        color: Color(0xffeeeeee),
-                        fontSize: 15,
-                      ))
-                ],
-              ),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    children: [
+                      Text("ปุ่มพูด",
+                          style: TextStyle(
+                              color: Color(0xffabd8ed),
+                              fontSize: 25,
+                              fontWeight: FontWeight.bold)),
+                      Text(
+                          "ผู้ใชังานสารถกดที่ปุ่มนี้และพูดคีย์เวิร์ด ชื่อฟังก์ชัน - สถานะ - อุปกรณ์ - ห้อง เช่น ไอ้แดงเปิดไฟห้องนอน",
+                          style: TextStyle(
+                            color: Color(0xffeeeeee),
+                            fontSize: 15,
+                          ))
+                    ],
+                  ),
+                ),
+              ],
             ),
-          ],
-        ),
-      ))
+          ))
     ]));
   }
 
