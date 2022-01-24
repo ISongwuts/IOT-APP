@@ -13,6 +13,7 @@ import 'package:myapp/screens/pages/settingpage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:tutorial_coach_mark/tutorial_coach_mark.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
@@ -50,6 +51,12 @@ class _MainScreenState extends State<MainScreen> {
   final dbRef = FirebaseDatabase.instance.reference();
   final auth = FirebaseAuth.instance;
   final user = FirebaseAuth.instance.currentUser!;
+  final sliderImages = [
+    'images/Slider/1.png',
+    'images/Slider/2.png',
+    'images/Slider/3.png'
+  ];
+
   bool userFromGg = false;
   int index = 0;
   int previousPage = 0;
@@ -530,20 +537,28 @@ class _MainScreenState extends State<MainScreen> {
                                     children: [
                                       Expanded(
                                           child: Padding(
-                                        padding: const EdgeInsets.fromLTRB(
-                                            15, 20, 15, 10),
-                                        child: Container(
-                                          decoration: BoxDecoration(
-                                              color: Color(0xffabd8ed),
-                                              borderRadius:
-                                                  BorderRadius.circular(10.0),
-                                              border: Border.all(
-                                                  color: Color(0xffabd8ed),
-                                                  width: 0)),
-                                          width: double.infinity,
-                                          height: 200,
-                                        ),
-                                      )),
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      15, 20, 15, 10),
+                                              child: CarouselSlider.builder(
+                                                  itemCount:
+                                                      sliderImages.length,
+                                                  itemBuilder: (context, index,
+                                                      realIndex) {
+                                                    final thisImage =
+                                                        sliderImages[index];
+                                                    return buildSlider(
+                                                        thisImage, index);
+                                                  },
+                                                  options: CarouselOptions(
+                                                      height: 170,
+                                                      autoPlay: true,
+                                                      enlargeCenterPage: true,
+                                                      aspectRatio: 16 / 9,
+                                                      viewportFraction: 0.8,
+                                                      autoPlayInterval:
+                                                          Duration(
+                                                              seconds: 3))))),
                                     ],
                                   ),
                                   DividerBetween("Widget For Controller"),
@@ -676,6 +691,15 @@ class _MainScreenState extends State<MainScreen> {
 
   void onChangedTab(int index) {
     setState(() => {this.index = index, isSlide = false});
+  }
+
+  Widget buildSlider(String thisImage, int index) {
+    return Container(
+
+      width: 600,
+      margin: EdgeInsets.symmetric(horizontal: 10),
+      child: Image(image: AssetImage(thisImage),fit: BoxFit.fitWidth)
+    );
   }
 }
 

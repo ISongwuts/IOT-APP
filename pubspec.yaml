@@ -63,6 +63,7 @@ dependencies:
   provider: ^6.0.0
   email_auth: ^1.0.0
   tutorial_coach_mark: ^1.2.1
+  carousel_slider: ^3.0.0
 
 dev_dependencies:
   flutter_test:
@@ -100,6 +101,9 @@ flutter:
    - images/Ice.png
    - images/Boss.png
    - images/Usaflag.png
+   - images/Slider/1.png
+   - images/Slider/2.png
+   - images/Slider/3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
