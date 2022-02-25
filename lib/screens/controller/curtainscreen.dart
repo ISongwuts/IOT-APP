@@ -207,20 +207,15 @@ class _CurtainScreenState extends State<CurtainScreen> {
                 margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Curtain_arr[index] == "1"
-                        ? dbRef
-                            .child('Gadget')
-                            .child('Curtain')
-                            .child(childPath[index][0])
-                            .child(childPath[index][1])
-                            .set("STOP")
-                        : null;
+                    dbRef
+                        .child('Gadget')
+                        .child('Curtain')
+                        .child(childPath[index][0])
+                        .child(childPath[index][1])
+                        .set("STOP");
                   },
                   child: Text("STOP"),
-                  style: ElevatedButton.styleFrom(
-                    primary:
-                        Curtain_arr[index] == "1" ? Colors.red : Colors.grey,
-                  ),
+                  style: ElevatedButton.styleFrom(primary: Colors.red),
                 ),
               ),
             ],
@@ -300,20 +295,15 @@ class _CurtainScreenState extends State<CurtainScreen> {
                 margin: EdgeInsets.fromLTRB(10, 0, 0, 0),
                 child: ElevatedButton(
                   onPressed: () {
-                    Curtain_arr[index] == "1"
-                        ? dbRef
-                            .child('Gadget')
-                            .child('Curtain')
-                            .child(childPath[index][0])
-                            .child(childPath[index][1])
-                            .set("STOP")
-                        : null;
+                    dbRef
+                        .child('Gadget')
+                        .child('Curtain')
+                        .child(childPath[index][0])
+                        .child(childPath[index][1])
+                        .set("STOP");
                   },
                   child: Text("STOP"),
-                  style: ElevatedButton.styleFrom(
-                    primary:
-                        Curtain_arr[index] == "1" ? Colors.red : Colors.grey,
-                  ),
+                  style: ElevatedButton.styleFrom(primary: Colors.red),
                 ),
               ),
             ],

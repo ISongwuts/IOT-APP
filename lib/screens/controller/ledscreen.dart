@@ -418,7 +418,12 @@ class _LedScreenState extends State<LedScreen> {
           .child(childPath[index_of_stLoop][0])
           .child(childPath[index_of_stLoop][1])
           .once()
-          .then((DataSnapshot snapshot) => {ledState_arr.add(snapshot.value)});
+          .then((DataSnapshot snapshot) => {
+                setState(() {
+                  print(childPath[index_of_stLoop][0]+ " State is: " + snapshot.value.toString());
+                  ledState_arr.add(snapshot.value);
+                })
+              });
       await dbRef
           .child("Gadget")
           .child("Light")
@@ -428,6 +433,7 @@ class _LedScreenState extends State<LedScreen> {
           .then((DataSnapshot snapshot) =>
               {currentColor_arr.add(snapshot.value)});
     }
+    
     setState(() {
       isLoading = false;
     });

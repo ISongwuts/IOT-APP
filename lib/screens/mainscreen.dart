@@ -147,7 +147,7 @@ class _MainScreenState extends State<MainScreen> {
     const Text("DASHBOARD"),
     Text("COVID 19"),
     Text("ABOUT"),
-    Text("LOGOUT"),
+    Text("SETTING"),
   ];
 
   final pages = <Widget>[
