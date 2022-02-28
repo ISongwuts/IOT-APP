@@ -417,8 +417,8 @@ class _MainScreenState extends State<MainScreen> {
                 margin: EdgeInsets.fromLTRB(20, 0, 10, 5),
                 child: Text(
                     index == 0
-                        ? " - Front Curtain Status"
-                        : "  - Side Curtain Status",
+                        ? " - 1st Floor Curtain Status"
+                        : "  - 2nd Floor Curtain Status",
                     style: TextStyle(fontSize: 13))),
             const Expanded(
                 child: Divider(

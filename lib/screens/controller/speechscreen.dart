@@ -348,7 +348,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
             .set(0);
       }
     }
-    if (text == "ไอ้แดงเปิดหน้าต่างด้านหน้า") {
+    if (text == "ไอ้แดงเปิดหน้าต่างชั้นแรก") {
       dbRef
           .child("Gadget")
           .child("Curtain")
@@ -356,7 +356,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
           .child(curtain_childPath[0][1])
           .set("1");
     }
-    if (text == "ไอ้แดงปิดหน้าต่างด้านหน้า") {
+    if (text == "ไอ้แดงปิดหน้าต่างชั้นแรก") {
       dbRef
           .child("Gadget")
           .child("Curtain")
@@ -364,7 +364,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
           .child(curtain_childPath[0][1])
           .set("0");
     }
-    if (text == "ไอ้แดงเปิดหน้าต่างด้านข้าง") {
+    if (text == "ไอ้แดงเปิดหน้าต่างชั้นสอง") {
       dbRef
           .child("Gadget")
           .child("Curtain")
@@ -372,7 +372,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
           .child(curtain_childPath[0][1])
           .set("1");
     }
-    if (text == "ไอ้แดงปิดหน้าต่างด้านข้าง") {
+    if (text == "ไอ้แดงปิดหน้าต่างชั้นสอง") {
       dbRef
           .child("Gadget")
           .child("Curtain")
@@ -380,7 +380,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
           .child(curtain_childPath[0][1])
           .set("0");
     }
-    if (text.trim() == "ไอ้แดงเปิดหน้าต่างทั้ง 2 ด้าน") {
+    if (text.trim() == "ไอ้แดงเปิดหน้าต่างทั้ง 2 ชั้น") {
       for (int index = 0; index < curtain_childPath.length; index++) {
         dbRef
             .child("Gadget")
@@ -390,7 +390,7 @@ class _SpeechScreenState extends State<SpeechScreen> {
             .set("1");
       }
     }
-    if (text.trim() == "ไอ้แดงปิดหน้าต่างทั้ง 2 ด้าน") {
+    if (text.trim() == "ไอ้แดงปิดหน้าต่างทั้ง 2 ชั้น") {
       for (int index = 0; index < curtain_childPath.length; index++) {
         dbRef
             .child("Gadget")

@@ -336,8 +336,8 @@ class _CurtainScreenState extends State<CurtainScreen> {
                       padding: const EdgeInsets.all(15),
                       child: Column(
                         children: [
-                          CurtainControllBox_Tutorial("Front Curtain", 0),
-                          CurtainControllBox("Side Curtain", 1),
+                          CurtainControllBox_Tutorial("1st Floor Curtain", 0),
+                          CurtainControllBox("2nd Floor Curtain", 1),
                         ],
                       ),
                     ),

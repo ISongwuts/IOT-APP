@@ -232,7 +232,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                                 password: profile.password)
                                             .then((value) => {
                                                   Fluttertoast.showToast(
-                                                    msg: "ลงทะเบียนเรียบร้อย",
+                                                    msg: "เข้าสู่ระบบเรียบร้อย",
                                                     gravity:
                                                         ToastGravity.CENTER,
                                                   ),
